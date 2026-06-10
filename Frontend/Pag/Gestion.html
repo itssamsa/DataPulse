@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestión Documental - DataPulse</title>
+  <link rel="stylesheet" href="../CSS/Style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <h1>DataPulse Gestión</h1>
+  <span>Gestión Documental</span>
+</div>
+
+<div class="layout">
+  <nav class="sidebar">
+    <a href="../Dashboard.html">Dashboard</a>
+    <a href="../Pag/Talento.html">Talento Humano</a>
+    <a href="../Pag/Control.html">Control Interno</a>
+    <a href="../Pag/Gestion.html" class="active">Gestión Documental</a>
+    <button onclick="window.location.href='../index.html'" class="Exit">Salir</button>
+  </nav>
+
+  <div class="main">
+    <h3>Indicadores</h3>
+
+    <div class="cards-row">
+      <div class="kpi-card">
+        <p>Total Documentos</p>
+        <span>2,470</span>
+      </div>
+      <div class="kpi-card">
+        <p>Abiertos</p>
+        <span>876</span>
+      </div>
+      <div class="kpi-card">
+        <p>Sin Leer</p>
+        <span>12</span>
+      </div>
+      <div class="kpi-card">
+        <p>Archivados</p>
+        <span>383</span>
+      </div>
+    </div>
+
+    <input type="text" class="buscador" placeholder="🔍 Buscar documento...">
+
+    <div class="panel">
+      <h3>Carpetas</h3>
+      <div class="carpetas">
+        <div class="carpeta"><span>📁</span>Mis archivos</div>
+        <div class="carpeta"><span>📁</span>Contratos</div>
+        <div class="carpeta"><span>📁</span>Afiliaciones</div>
+        <div class="carpeta"><span>📁</span>Finanzas</div>
+        <div class="carpeta"><span>📁</span>Proyectos</div>
+        <div class="carpeta"><span>🖼️</span>Fotos</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Listado de Documentos</h3>
+      <table>
+        <thead>
+          <tr><th>Código</th><th>Área</th><th>Estado</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>001</td><td>Jurídica</td><td>Activo</td></tr>
+          <tr><td>002</td><td>Finanzas</td><td>Archivado</td></tr>
+          <tr><td>003</td><td>RRHH</td><td>Activo</td></tr>
+          <tr><td>004</td><td>TI</td><td>En revisión</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

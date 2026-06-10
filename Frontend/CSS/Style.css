@@ -1,0 +1,275 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f0f0f0;
+  color: #222;
+}
+
+/* PÁGINAS */
+.page {
+  display: none;
+}
+.page.active {
+  display: block;
+}
+
+/* LOGIN */
+#login {
+  background: #2929c8;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  background: white;
+  padding: 40px;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+}
+
+.login-box h2 {
+  color: #2929c8;
+  margin-bottom: 20px;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* BOTONES */
+button {
+  background: #2929c8;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.Exit { 
+    display: block; 
+    margin: auto; 
+    position: absolute; 
+    bottom: 20px; 
+    left: 0; 
+    right: 91%; 
+    width: fit-content;
+}
+
+button:hover {
+  background: #1a1a9e;
+}
+
+/* BARRA SUPERIOR */
+.topbar {
+  background: #2929c8;
+  color: white;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 18px;
+}
+
+/* MENÚ LATERAL */
+.layout {
+  display: flex;
+}
+
+.sidebar {
+  width: 180px;
+  background: white;
+  border-right: 1px solid #ccc;
+  min-height: calc(100vh - 52px);
+  padding-top: 10px;
+}
+
+.sidebar a {
+  display: block;
+  padding: 12px 18px;
+  text-decoration: none;
+  color: #333;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  background: #e0e0ff;
+  color: #2929c8;
+}
+
+/* CONTENIDO PRINCIPAL */
+.main {
+  flex: 1;
+  padding: 20px;
+}
+
+/* TARJETAS KPI */
+.cards-row {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.kpi-card {
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 16px;
+  flex: 1;
+  min-width: 120px;
+}
+
+.kpi-card p {
+  margin: 0 0 6px 0;
+  font-size: 12px;
+  color: #777;
+}
+
+.kpi-card span {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+/* TABLA */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+th {
+  background: #eeeeee;
+  padding: 10px;
+  text-align: left;
+  font-size: 13px;
+}
+
+td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  font-size: 13px;
+}
+
+/* TÍTULOS DE SECCIÓN */
+h3 {
+  margin-top: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+/* PANEL */
+.panel {
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+/* BUSCADOR */
+.buscador {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 13px;
+  box-sizing: border-box;
+}
+
+/* CARPETAS */
+.carpetas {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.carpeta {
+  text-align: center;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.carpeta span {
+  font-size: 40px;
+  display: block;
+}
+
+/* ALERTAS */
+.alerta {
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  border-left: 4px solid #2929c8;
+  background: #f0f0ff;
+  font-size: 13px;
+}
+
+/* SUBPÁGINAS CI */
+.subpage {
+  display: none;
+}
+.subpage.active {
+  display: block;
+}
+
+/* ERROR */
+.error-box {
+  background: #ffeeee;
+  border: 1px solid #f99;
+  border-radius: 6px;
+  padding: 30px;
+  text-align: center;
+  max-width: 400px;
+  margin: 40px auto;
+}
+
+.error-box h2 {
+  color: red;
+}
+
+/* FORMULARIO */
+.campo {
+  margin-bottom: 14px;
+}
+
+.campo label {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.campo input {
+  width: 100%;
+  padding: 9px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 13px;
+  box-sizing: border-box;
+}
+
+.btn-secundario {
+  background: white;
+  color: #333;
+  border: 1px solid #ccc;
+  margin-right: 8px;
+}
+
+.btn-secundario:hover {
+  background: #eee;
+}

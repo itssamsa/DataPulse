@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Talento Humano - DataPulse</title>
+  <link rel="stylesheet" href="../CSS/Style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <h1>DataPulse Gestión</h1>
+  <span>Talento Humano</span>
+</div>
+
+<div class="layout">
+  <nav class="sidebar">
+    <a href="../Dashboard.html">Dashboard</a>
+    <a href="../Pag/Talento.html" class="active">Talento Humano</a>
+    <a href="../Pag/Control.html">Control Interno</a>
+    <a href="../Pag/Gestion.html">Gestión Documental</a>
+    <button onclick="window.location.href='../index.html'" class="Exit">Salir</button>
+  </nav>
+  
+
+  <div class="main">
+    <h3>Indicadores</h3>
+
+    <div class="cards-row">
+      <div class="kpi-card">
+        <p>Empleados Activos</p>
+        <span>48</span>
+      </div>
+      <div class="kpi-card">
+        <p>Rotación</p>
+        <span>3%</span>
+      </div>
+      <div class="kpi-card">
+        <p>Asistencia</p>
+        <span>94%</span>
+      </div>
+      <div class="kpi-card">
+        <p>Evaluaciones Pendientes</p>
+        <span>7</span>
+      </div>
+    </div>
+
+    <input type="text" class="buscador" placeholder="🔍 Buscar empleado...">
+
+    <div class="panel">
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Cargo</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Juan Acosta</td><td>Analista</td><td>Activo</td></tr>
+          <tr><td>Luisa García</td><td>Diseñadora</td><td>Activo</td></tr>
+          <tr><td>Carlos Ruiz</td><td>Contador</td><td>Inactivo</td></tr>
+          <tr><td>Ana Pérez</td><td>RRHH</td><td>Activo</td></tr>
+          <tr><td>Luis Mora</td><td>Auditor</td><td>Activo</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="panel">
+      <h3>Información del personal</h3>
+      <p><strong>Horas trabajadas:</strong> 320 h</p>
+      <p><strong>Ausencias:</strong> 5</p>
+      <p><strong>Desempeño promedio:</strong> ★★★★☆ Nivel alto</p>
+    </div>
+
+    <div class="panel">
+      <h3>Documentos laborales</h3>
+      <p>📄 Contrato laboral</p>
+      <p>📄 Afiliación EPS</p>
+      <p>📄 Afiliación ARL</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

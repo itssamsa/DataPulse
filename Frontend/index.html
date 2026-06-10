@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - DataPulse</title>
+  <link rel="stylesheet" href="CSS/Style.css">
+</head>
+<body>
+
+<div id="login" class="page active">
+  <div class="login-box">
+    <h2>DataPulse Gestión</h2>
+    <p style="color:#777; font-size:13px; margin-bottom:20px;">Sistema de gestión empresarial</p>
+
+    <input type="text" id="usuario" placeholder="Usuario">
+    <input type="password" id="contrasena" placeholder="Contraseña">
+
+    <p id="mensaje-error" style="color:red; font-size:12px; margin-bottom:10px; display:none;">
+      Usuario o contraseña incorrectos.
+    </p>
+
+    <button onclick="iniciarSesion()">Ingresar</button>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+
+</body>
+</html>

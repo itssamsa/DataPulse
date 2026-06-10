@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Control Interno - DataPulse</title>
+  <link rel="stylesheet" href="../CSS/Style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <h1>DataPulse Gestión</h1>
+  <span>Control Interno</span>
+</div>
+
+<div class="layout">
+  <nav class="sidebar">
+    <a href="../Dashboard.html">Dashboard</a>
+    <a href="../Pag/Talento.html">Talento Humano</a>
+    <a href="../Pag/Control.html" class="active">Control Interno</a>
+    <a href="../Pag/Gestion.html">Gestión Documental</a>
+    <button onclick="window.location.href='../index.html'" class="Exit">Salir</button>
+  </nav>
+
+  <div class="main">
+
+    <!-- Vista principal -->
+    <div id="ci-home" class="subpage active">
+      <div class="cards-row">
+        <div class="kpi-card">
+          <p>Hallazgos abiertos</p>
+          <span>4</span>
+        </div>
+        <div class="kpi-card">
+          <p>Procesos</p>
+          <span>82%</span>
+        </div>
+        <div class="kpi-card">
+          <p>Auditorías en curso</p>
+          <span>3</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Registro de Hallazgos</h3>
+        <table>
+          <thead>
+            <tr><th>Hora</th><th>Descripción</th><th>Prioridad</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>10:32</td><td>Procedimiento Incorrecto</td><td>P1</td></tr>
+            <tr><td>09:15</td><td>Política no cumplida</td><td>P2</td></tr>
+            <tr><td>08:47</td><td>Error documental</td><td>P3</td></tr>
+            <tr><td>07:22</td><td>Incumplimiento SGI</td><td>P1</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top: 12px;">
+        <button onclick="mostrar('ci-auditorias')">Ver Auditorías</button>
+        <button onclick="mostrar('ci-hallazgos')" style="margin-left:8px;">Ver Hallazgos</button>
+      </div>
+    </div>
+
+    <!-- Auditorías -->
+    <div id="ci-auditorias" class="subpage">
+      <div class="panel">
+        <h3>Auditorías Registradas</h3>
+        <input type="text" class="buscador" placeholder="Buscar auditoría...">
+        <table>
+          <thead>
+            <tr><th>ID</th><th>Nombre</th><th>Responsable</th><th>Fecha</th><th>Estado</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>01</td><td>Seguridad IT</td><td>Carlos</td><td>12/02</td><td>Activa</td></tr>
+            <tr><td>02</td><td>Calidad procesos</td><td>Ana</td><td>10/02</td><td>Cerrada</td></tr>
+            <tr><td>03</td><td>Inventario</td><td>Luis</td><td>08/02</td><td>Pendiente</td></tr>
+          </tbody>
+        </table>
+        <br>
+        <button class="btn-secundario" onclick="mostrar('ci-home')">Volver</button>
+        <button onclick="mostrar('ci-registrar')">Registrar Auditoría</button>
+      </div>
+    </div>
+
+    <!-- Registrar auditoría -->
+    <div id="ci-registrar" class="subpage">
+      <div class="panel">
+        <h3>Registrar Auditoría</h3>
+        <div class="campo">
+          <label>Nombre:</label>
+          <input type="text" id="nombre" placeholder="Nombre de la auditoría">
+        </div>
+        <div class="campo">
+          <label>Responsable:</label>
+          <input type="text" id="responsable" placeholder="Nombre del responsable">
+        </div>
+        <div class="campo">
+          <label>Fecha:</label>
+          <input type="date" id="fecha">
+        </div>
+        <div class="campo">
+          <label>Estado:</label>
+          <input type="text" id="estado" placeholder="Activa / Cerrada / Pendiente">
+        </div>
+        <button class="btn-secundario" onclick="mostrar('ci-auditorias')">Volver</button>
+        <button onclick="guardar()">Guardar</button>
+      </div>
+    </div>
+
+    <!-- Error -->
+    <div id="ci-error" class="subpage">
+      <div class="error-box">
+        <h2>⚠️ Error</h2>
+        <p>Debes completar todos los campos.</p>
+        <button onclick="mostrar('ci-registrar')">Volver</button>
+      </div>
+    </div>
+
+    <!-- Hallazgos -->
+    <div id="ci-hallazgos" class="subpage">
+      <div class="panel">
+        <h3>Hallazgos Abiertos</h3>
+        <table>
+          <thead>
+            <tr><th>ID</th><th>Hallazgo</th><th>Responsable</th><th>Estado</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>01</td><td>Acceso sin control</td><td>Juan</td><td>Abierto</td></tr>
+            <tr><td>02</td><td>Documento vencido</td><td>Ana</td><td>En revisión</td></tr>
+            <tr><td>03</td><td>Permisos incorrectos</td><td>Luis</td><td>Abierto</td></tr>
+          </tbody>
+        </table>
+        <br>
+        <button class="btn-secundario" onclick="mostrar('ci-home')">Volver</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

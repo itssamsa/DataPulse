@@ -22,3 +22,75 @@ def crear_usuario(usuario: Usuario):
         "mensaje": "Usuario creado correctamente",
         "id": str(resultado.inserted_id)
     }
+
+# crud 
+# Listar usuarios
+@router.get("/usuarios")
+def listar_usuarios():
+
+    usuarios = list(
+        db.usuarios.find(
+            {},
+            {"_id": 0}
+        )
+    )
+
+    return usuarios
+
+# Obtener usuario por cédula
+@router.get("/usuarios/{cedula}")
+def obtener_usuario(cedula: str):
+
+    usuario = db.usuarios.find_one(
+        {"cedula": cedula},
+        {"_id": 0}
+    )
+
+    if usuario:
+        return usuario
+
+    return {"mensaje": "Usuario no encontrado"}
+
+# actualizar usuario
+@router.put("/usuarios/{cedula}")
+def actualizar_usuario(cedula: str, usuario: Usuario):
+
+    resultado = db.usuarios.update_one(
+        {"cedula": cedula},
+        {
+            "$set": {
+                "nombre": usuario.nombre,
+                "correo": usuario.correo,
+                "password": usuario.password,
+                "rol": usuario.rol,
+                "estado": usuario.estado
+            }
+        }
+    )
+
+    if resultado.modified_count > 0:
+        return {"mensaje": "Usuario actualizado correctamente"}
+
+    return {"mensaje": "Usuario no encontrado o sin cambios"}
+
+# eliminar usuario
+@router.delete("/usuarios/{cedula}")
+def eliminar_usuario(cedula: str):
+
+    resultado = db.usuarios.update_one(
+        {"cedula": cedula},
+        {
+            "$set": {
+                "estado": False
+            }
+        }
+    )
+
+    if resultado.modified_count > 0:
+        return {"mensaje": "Usuario desactivado correctamente"}
+
+    return {"mensaje": "Usuario no encontrado"}
+
+#Se creó el modelo de usuario y se desarrollaron las funciones para registrar, consultar, actualizar y gestionar usuarios dentro del sistema.
+# para la eliminación se decidió no borrar completamente los datos del usuario sino que mejor se cambia el estado a False para mantener el historial y conservar la información en caso de que sea necesaria más adelante.
+# ----la primera versión del CRUD de usuarios-----

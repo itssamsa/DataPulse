@@ -1,11 +1,23 @@
 from fastapi import APIRouter
+from app.models.login import Login
 from app.database import db
 from app.models.usuario import Usuario
 
 router = APIRouter()
 
+# crud 
+#crear usuario
 @router.post("/usuarios")
 def crear_usuario(usuario: Usuario):
+
+    existe = db.usuarios.find_one(
+        {"cedula": usuario.cedula}
+    )
+
+    if existe:
+        return {
+            "mensaje": "Ya existe un usuario con esta cédula"
+        }
 
     nuevo_usuario = {
         "cedula": usuario.cedula,
@@ -23,8 +35,7 @@ def crear_usuario(usuario: Usuario):
         "id": str(resultado.inserted_id)
     }
 
-# crud 
-# Listar usuarios
+# Listar usuarios 
 @router.get("/usuarios")
 def listar_usuarios():
 
@@ -94,3 +105,46 @@ def eliminar_usuario(cedula: str):
 #Se creó el modelo de usuario y se desarrollaron las funciones para registrar, consultar, actualizar y gestionar usuarios dentro del sistema.
 # para la eliminación se decidió no borrar completamente los datos del usuario sino que mejor se cambia el estado a False para mantener el historial y conservar la información en caso de que sea necesaria más adelante.
 # ----la primera versión del CRUD de usuarios-----
+
+#Login - inicio de sesión
+
+@router.post("/login")
+def iniciar_sesion(datos: Login):
+
+    usuario = db.usuarios.find_one(
+        {
+            "correo": datos.correo,
+            "password": datos.password,
+            "estado": True
+        },
+        {"_id": 0}
+    )
+
+    if usuario:
+        return {
+            "mensaje": "Inicio de sesión exitoso",
+            "usuario": usuario
+        }
+
+    return {
+        "mensaje": "Correo o contraseña incorrectos"
+    }
+
+#Perfil de usuario - obtener información del perfil por cédula
+@router.get("/perfil/{cedula}")
+def obtener_perfil(cedula: str):
+
+    usuario = db.usuarios.find_one(
+        {"cedula": cedula},
+        {
+            "_id": 0,
+            "password": 0
+        }
+    )
+
+    if usuario:
+        return usuario
+
+    return {
+        "mensaje": "Usuario no encontrado"
+    }

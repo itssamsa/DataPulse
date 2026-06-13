@@ -5,18 +5,28 @@ from app.models.usuario import Usuario
 
 router = APIRouter()
 
-# crud 
-#crear usuario
+# Crear usuario
 @router.post("/usuarios")
 def crear_usuario(usuario: Usuario):
 
     existe = db.usuarios.find_one(
-        {"cedula": usuario.cedula}
+        {
+            "$or": [
+                {
+                    "cedula": usuario.cedula,
+                    "empresa_id": usuario.empresa_id
+                },
+                {
+                    "correo": usuario.correo,
+                    "empresa_id": usuario.empresa_id
+                }
+            ]
+        }
     )
 
     if existe:
         return {
-            "mensaje": "Ya existe un usuario con esta cédula"
+            "mensaje": "La cédula o el correo ya están registrados en esta empresa"
         }
 
     nuevo_usuario = {
@@ -25,6 +35,7 @@ def crear_usuario(usuario: Usuario):
         "correo": usuario.correo,
         "password": usuario.password,
         "rol": usuario.rol,
+        "empresa_id": usuario.empresa_id,
         "estado": usuario.estado
     }
 
@@ -35,39 +46,60 @@ def crear_usuario(usuario: Usuario):
         "id": str(resultado.inserted_id)
     }
 
-# Listar usuarios 
-@router.get("/usuarios")
-def listar_usuarios():
 
-    usuarios = list(
-        db.usuarios.find(
-            {},
-            {"_id": 0}
-        )
-    )
-
-    return usuarios
-
-# Obtener usuario por cédula
-@router.get("/usuarios/{cedula}")
-def obtener_usuario(cedula: str):
+# Obtener usuario por cédula dentro de una empresa
+@router.get("/usuarios/{empresa_id}/{cedula}")
+def obtener_usuario(empresa_id: str, cedula: str):
 
     usuario = db.usuarios.find_one(
-        {"cedula": cedula},
-        {"_id": 0}
+        {
+            "cedula": cedula,
+            "empresa_id": empresa_id
+        },
+        {
+            "_id": 0,
+            "password": 0
+        }
     )
 
     if usuario:
         return usuario
 
-    return {"mensaje": "Usuario no encontrado"}
+    return {
+        "mensaje": "Usuario no encontrado"
+    }
 
-# actualizar usuario
-@router.put("/usuarios/{cedula}")
-def actualizar_usuario(cedula: str, usuario: Usuario):
+# Listar usuarios de una empresa
+@router.get("/usuarios/empresa/{empresa_id}")
+def listar_usuarios_empresa(empresa_id: str):
+
+    usuarios = list(
+        db.usuarios.find(
+            {
+                "empresa_id": empresa_id
+            },
+            {
+                "_id": 0,
+                "password": 0
+            }
+        )
+    )
+
+    return usuarios
+
+# Actualizar usuario
+@router.put("/usuarios/{empresa_id}/{cedula}")
+def actualizar_usuario(
+    empresa_id: str,
+    cedula: str,
+    usuario: Usuario
+):
 
     resultado = db.usuarios.update_one(
-        {"cedula": cedula},
+        {
+            "cedula": cedula,
+            "empresa_id": empresa_id
+        },
         {
             "$set": {
                 "nombre": usuario.nombre,
@@ -80,16 +112,26 @@ def actualizar_usuario(cedula: str, usuario: Usuario):
     )
 
     if resultado.modified_count > 0:
-        return {"mensaje": "Usuario actualizado correctamente"}
+        return {
+            "mensaje": "Usuario actualizado correctamente"
+        }
 
-    return {"mensaje": "Usuario no encontrado o sin cambios"}
+    return {
+        "mensaje": "Usuario no encontrado o sin cambios"
+    }
 
-# eliminar usuario
-@router.delete("/usuarios/{cedula}")
-def eliminar_usuario(cedula: str):
+# Desactivar usuario (no lo borra, solo cambia su estado a inactivo - esto para mantener el historial de datos relacionados con ese usuario-)
+@router.delete("/usuarios/{empresa_id}/{cedula}")
+def eliminar_usuario(
+    empresa_id: str,
+    cedula: str
+):
 
     resultado = db.usuarios.update_one(
-        {"cedula": cedula},
+        {
+            "cedula": cedula,
+            "empresa_id": empresa_id
+        },
         {
             "$set": {
                 "estado": False
@@ -98,16 +140,15 @@ def eliminar_usuario(cedula: str):
     )
 
     if resultado.modified_count > 0:
-        return {"mensaje": "Usuario desactivado correctamente"}
+        return {
+            "mensaje": "Usuario desactivado correctamente"
+        }
 
-    return {"mensaje": "Usuario no encontrado"}
+    return {
+        "mensaje": "Usuario no encontrado"
+    }
 
-#Se creó el modelo de usuario y se desarrollaron las funciones para registrar, consultar, actualizar y gestionar usuarios dentro del sistema.
-# para la eliminación se decidió no borrar completamente los datos del usuario sino que mejor se cambia el estado a False para mantener el historial y conservar la información en caso de que sea necesaria más adelante.
-# ----la primera versión del CRUD de usuarios-----
-
-#Login - inicio de sesión
-
+# Login
 @router.post("/login")
 def iniciar_sesion(datos: Login):
 
@@ -117,10 +158,14 @@ def iniciar_sesion(datos: Login):
             "password": datos.password,
             "estado": True
         },
-        {"_id": 0}
+        {
+            "_id": 0,
+            "password": 0
+        }
     )
 
     if usuario:
+
         return {
             "mensaje": "Inicio de sesión exitoso",
             "usuario": usuario
@@ -130,12 +175,18 @@ def iniciar_sesion(datos: Login):
         "mensaje": "Correo o contraseña incorrectos"
     }
 
-#Perfil de usuario - obtener información del perfil por cédula
-@router.get("/perfil/{cedula}")
-def obtener_perfil(cedula: str):
+# Perfil
+@router.get("/perfil/{empresa_id}/{cedula}")
+def obtener_perfil(
+    empresa_id: str,
+    cedula: str
+):
 
     usuario = db.usuarios.find_one(
-        {"cedula": cedula},
+        {
+            "cedula": cedula,
+            "empresa_id": empresa_id
+        },
         {
             "_id": 0,
             "password": 0

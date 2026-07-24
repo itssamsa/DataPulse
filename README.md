@@ -13,11 +13,11 @@
 </p>
 ---
 
-## 🧠 Sobre DataPulse
+## Sobre DataPulse
 
 DataPulse es una **plataforma de procesamiento y análisis de datos en tiempo real**, diseñada para manejar flujos dinámicos de información y generar insights de manera inmediata.  
 
-Se enfoca en combinar **rendimiento ⚡, escalabilidad 📈 y eficiencia 🧩** para aplicaciones modernas basadas en datos.
+Se enfoca en combinar **rendimiento, escalabilidad y eficiencia** para aplicaciones modernas basadas en datos.
 
 ---
 

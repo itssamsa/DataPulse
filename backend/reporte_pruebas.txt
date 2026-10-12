@@ -1,0 +1,19 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0 -- /home/mike/Documentos/SENA/Proyecto Final/DataPulse/DataPulse/backend/venv_ubuntu/bin/python
+cachedir: .pytest_cache
+rootdir: /home/mike/Documentos/SENA/Proyecto Final/DataPulse/DataPulse/backend
+plugins: anyio-4.13.0
+collecting ... collected 10 items
+
+app/tests/test_usuarios.py::test_crear_usuario_valido PASSED             [ 10%]
+app/tests/test_usuarios.py::test_estado_por_defecto PASSED               [ 20%]
+app/tests/test_usuarios.py::test_aceptar_roles_validos[Administrador] PASSED [ 30%]
+app/tests/test_usuarios.py::test_aceptar_roles_validos[Analista] PASSED  [ 40%]
+app/tests/test_usuarios.py::test_aceptar_roles_validos[Usuario general] PASSED [ 50%]
+app/tests/test_usuarios.py::test_rechazar_rol_invalido PASSED            [ 60%]
+app/tests/test_usuarios.py::test_rechazar_correo_invalido PASSED         [ 70%]
+app/tests/test_usuarios.py::test_rechazar_campo_obligatorio_ausente PASSED [ 80%]
+app/tests/test_usuarios.py::test_permitir_estado_inactivo PASSED         [ 90%]
+app/tests/test_usuarios.py::test_rechazar_correo_vacio PASSED            [100%]
+
+============================== 10 passed in 0.09s ==============================
